@@ -4,11 +4,11 @@
 # Parameters
 ## df: Data frame with dive data containing at minimum depth, time and dive_id
 ## w: length of window for rolling analysis
-## span: width of span in data to consider maximum value to identify peak of wiggle
+## smooth: width of span in data to consider maximum value to identify peak of wiggle
 ## plot: should the output be plotted (TRUE or FALSE)
 
 wiggle_counter <-
-  function(df, w = 10, span = 0.1, plot = TRUE) {
+  function(df, w = 10, smooth = 0.1, plot = TRUE) {
     x <- as.numeric(df$X)
     y <- df$Y
     
@@ -22,7 +22,7 @@ wiggle_counter <-
       list(x=x[i.max], i=i.max, y.hat=y.smooth)
     }
     
-    peaks <- argmax(x, y, w=w, span=span)
+    peaks <- argmax(x, y, w = w, span = smooth)
     
     wiggle_dat <- tibble(X = as_datetime(df$X), y.hat = peaks$y.hat)
     smooth_dat <- tibble(X = as_datetime(x), Y = loess(y ~ x)$fitted)
