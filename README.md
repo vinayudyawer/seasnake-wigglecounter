@@ -80,13 +80,11 @@ track_dat %>%
 We can visualise the wiggle counter data for the GA phase of dive_id 25
 
 ```r
-wig_dat <-
-  track_dat %>% 
-  filter(dive_phase %in% "GA") %>% 
-  mutate(X = as.numeric(date_time), Y = depth) %>% 
-  group_by(tag_id, dive_id) %>% 
-  group_map(~ wiggle_counter(.x, w = 16, smooth = 0.05, plot = F), .keep = T) %>% 
-  bind_rows()
+track_dat %>%
+  filter(dive_id %in% 25) %>%
+  filter(dive_phase %in% "GA") %>%
+  mutate(X = as.numeric(date_time), Y = depth) %>%
+  wiggle_counter(., w = 16, smooth = 0.05)
 ```
 
 <img src="images/Fig2.png"/>
