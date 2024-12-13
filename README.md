@@ -107,8 +107,7 @@ wig_dat <-
 wig_summary <-
   wig_dat %>% 
   group_by(tag_id, dive_id, n_wiggles, mean_amp, max_amp) %>% 
-  summarise(duration_mins = min(date_time) %--% max(date_time) / dminutes(1),
-            mean_depth = mean(depth))
+  summarise(duration_mins = min(date_time) %--% max(date_time) / dminutes(1))
 ```
 
 <br>
@@ -142,7 +141,7 @@ wrap_plots(plota, plotb, nrow = 1)
 <br>
 <br>
 
-# Author
+# Authors
 
 Vinay Udyawer <br> <vinay.udyawer@gmail.com> <br><br>
 Shannon Coppersmith <br> <shannon.coppersmith@adelaide.edu.au>

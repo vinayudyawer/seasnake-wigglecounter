@@ -64,8 +64,7 @@ wig_dat <-
 wig_summary <-
   wig_dat %>% 
   group_by(tag_id, dive_id, n_wiggles, mean_amp, max_amp) %>% 
-  summarise(duration_mins = min(date_time) %--% max(date_time) / dminutes(1),
-            mean_depth = mean(depth))
+  summarise(duration_mins = min(date_time) %--% max(date_time) / dminutes(1))
 
 plota <-
   wig_summary %>% 
